@@ -1,113 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Character Encoding -->
-    <meta charset="UTF-8" />
-    <!-- Primary Meta Tags -->
-    <title>Local Truck Driver Jobs Near Me | Find CDL Positions in Your Area</title>
-    <meta name="title" content="Local Truck Driver Jobs Near Me | Find CDL Positions in Your Area" />
-    <meta name="description" content="Find local truck driver jobs near me with immediate openings. Browse CDL positions with competitive pay and benefits in your area. Local, Regional, and OTR positions available!" />
-    <meta name="keywords" content="local truck driver jobs near me, local truck driving jobs, cdl jobs near me, truck driver positions near me, otr truck driving jobs, regional truck driver jobs" />
-    <!-- Viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Favicon - Single Size -->
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://localtruckdriverjobsnearme.com/" />
-    <meta property="og:title" content="Local Truck Driver Jobs Near Me - Find Driving Jobs in Your Area" />
-    <meta property="og:description" content="Looking for truck driver jobs near me? Find Local, Regional, and OTR positions with great benefits in your area. Apply now for trucking jobs!" />
-    <meta property="og:image" content="https://localtruckdriverjobsnearme.com/og-image.jpg" />
-    <!-- Search Engine -->
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://localtruckdriverjobsnearme.com/" />
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://localtruckdriverjobsnearme.com/",
-        "name": "Local Truck Driver Jobs Near Me",
-        "description": "Find truck driver jobs near me - Local, Regional, and OTR positions available",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://localtruckdriverjobsnearme.com/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruckJobs - Find Your Next Trucking Job</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        @media (max-width: 768px) {
+            .mobile-nav-open {
+                transform: translateX(0) !important;
+            }
         }
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "JobPosting",
-        "title": "Local Truck Driver Jobs Near Me",
-        "description": "Find truck driver jobs near me with competitive pay. Local, Regional, and OTR positions available.",
-        "industry": "Transportation",
-        "employmentType": ["FULL_TIME", "CONTRACTOR"],
-        "occupationalCategory": "Truck Driver",
-        "baseSalary": {
-          "@type": "MonetaryAmount",
-          "currency": "USD",
-          "value": {
-            "@type": "QuantitativeValue",
-            "minValue": 50000,
-            "maxValue": 100000,
-            "unitText": "YEAR"
-          }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Mobile Header -->
+    <div class="md:hidden bg-black text-white p-4 sticky top-0 z-50 flex justify-between items-center">
+        <a href="/" class="flex items-center gap-2">
+            <i data-feather="truck" class="w-6 h-6"></i>
+            <span class="text-lg font-bold">TruckJobs</span>
+        </a>
+        <button id="menuButton" class="p-2" onclick="toggleMobileMenu()">
+            <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar - Hidden on mobile by default -->
+        <div id="sidebar" class="w-64 bg-black text-white p-6 fixed h-full z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out">
+            <div class="mb-8 hidden md:flex items-center gap-2">
+                <i data-feather="truck" class="w-8 h-8"></i>
+                <span class="text-xl font-bold">TruckJobs</span>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="/" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-800">
+                    <i data-feather="home" class="w-5 h-5"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/search" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                    <i data-feather="search" class="w-5 h-5"></i>
+                    <span>Search Jobs</span>
+                </a>
+                <a href="/employer" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                    <i data-feather="briefcase" class="w-5 h-5"></i>
+                    <span>For Employers</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto pt-4 border-t border-gray-800">
+                <a href="https://buy.stripe.com/00geXX7bX7wfcPm6op" 
+                   class="block w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center">
+                    Post a Job - $150/month
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 md:ml-64">
+            <div class="p-4 md:p-8 bg-gradient-to-b from-gray-900 to-black text-white min-h-screen">
+                <div class="max-w-6xl mx-auto">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8">Find Your Next Trucking Job</h1>
+
+                    <!-- Search Box -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-6 md:mb-8">
+                        <form class="flex flex-col gap-4">
+                            <div class="flex-1">
+                                <label for="zipCode" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Enter ZIP Code
+                                </label>
+                                <div class="relative">
+                                    <i data-feather="map-pin" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                    <input type="text" id="zipCode" 
+                                           class="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                           placeholder="Enter your ZIP code">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                                <i data-feather="search" class="w-5 h-5"></i>
+                                Find Jobs
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Featured Jobs -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 text-gray-900">
+                        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Featured Jobs</h2>
+                        <div class="space-y-4 md:space-y-6">
+                            <!-- Featured Job 1 -->
+                            <div class="border rounded-lg p-4 md:p-6">
+                                <div class="flex flex-col md:flex-row md:items-start gap-4">
+                                    <img src="https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png" 
+                                         alt="Giltner Transportation" class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
+                                    <div class="flex-1 space-y-3">
+                                        <div class="text-center md:text-left">
+                                            <h3 class="text-lg md:text-xl font-semibold">CDL-A Company Driver</h3>
+                                            <p class="text-gray-600">Giltner Transportation</p>
+                                        </div>
+                                        <p class="text-gray-700">Free Maintenance, Per Mile Pay, and Safety Bonus</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="map-pin" class="w-5 h-5 text-blue-600"></i>
+                                                <span>Jerome, ID</span>
+                                            </div>
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="dollar-sign" class="w-5 h-5 text-green-600"></i>
+                                                <span>$0.57 – $0.60/mile</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Starting Rate</span>
+                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Payment Schedule</span>
+                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Bonuses</span>
+                                        </div>
+                                        <a href="https://intelliapp.driverapponline.com/c/giltner" 
+                                           class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
+                                            Apply Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Featured Job 2 -->
+                            <div class="border rounded-lg p-4 md:p-6">
+                                <div class="flex flex-col md:flex-row md:items-start gap-4">
+                                    <img src="https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png" 
+                                         alt="Giltner Transportation" class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
+                                    <div class="flex-1 space-y-3">
+                                        <div class="text-center md:text-left">
+                                            <h3 class="text-lg md:text-xl font-semibold">CDL-A Lease Operator</h3>
+                                            <p class="text-gray-600">Giltner Transportation</p>
+                                        </div>
+                                        <p class="text-gray-700">Be your own boss so you can own your equipment</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="map-pin" class="w-5 h-5 text-blue-600"></i>
+                                                <span>Jerome, ID</span>
+                                            </div>
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="dollar-sign" class="w-5 h-5 text-green-600"></i>
+                                                <span>73% of Line Haul</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Pay Rate</span>
+                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Fuel Benefits</span>
+                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Equipment</span>
+                                        </div>
+                                        <a href="https://intelliapp.driverapponline.com/c/giltner" 
+                                           class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
+                                            Apply Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile menu -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const menuIcon = document.querySelector('#menuButton i');
+            
+            sidebar.classList.toggle('mobile-nav-open');
+            overlay.classList.toggle('hidden');
+            
+            // Toggle menu icon between menu and x
+            if (menuIcon.getAttribute('data-feather') === 'menu') {
+                menuIcon.setAttribute('data-feather', 'x');
+            } else {
+                menuIcon.setAttribute('data-feather', 'menu');
+            }
+            feather.replace();
         }
-      }
     </script>
-    <!-- FAQ Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [{
-          "@type": "Question",
-          "name": "What is Local Truck Driver Jobs Near Me?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Local Truck Driver Jobs Near Me is a job board connecting CDL drivers with trucking companies. We list Local, Regional, and OTR positions with competitive pay, making it easy for drivers to find their next opportunity and for companies to find qualified drivers."
-          }
-        }, {
-          "@type": "Question",
-          "name": "How do I find truck driving jobs in my area?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Simply enter your ZIP code to see all available trucking positions near you. Our platform shows jobs from multiple companies, including local routes, regional hauls, and OTR positions, with detailed information about pay, requirements, and benefits."
-          }
-        }, {
-          "@type": "Question",
-          "name": "What's the typical pay for truck driving jobs?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Pay varies by position type and experience. Local drivers typically earn $50,000-$75,000 annually, while OTR positions often offer $65,000-$100,000+ per year. Many positions also include benefits like health insurance, 401(k), and sign-on bonuses."
-          }
-        }, {
-          "@type": "Question",
-          "name": "How do I apply for trucking jobs?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Each job listing has an 'Apply Now' button that connects you directly with the hiring company. Most positions require a valid CDL-A license, clean driving record, and may have specific experience requirements. Applications typically take less than 30-60 minutes to complete."
-          }
-        }, {
-          "@type": "Question",
-          "name": "How can companies post truck driving jobs?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Companies can post job listings for $150/month. Each posting includes: Real-time tracking of views and clicks, Featured placement options, Company profile page, and Direct applicant contact."
-          }
-        }]
-      }
-    </script>
-    <!-- Stylesheets and Scripts -->
-    <link rel="stylesheet" href="/assets/index-CUm_mrHL.css">
-    <script type="module" src="/assets/index-Lel8ILui.js"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+</body>
 </html>
