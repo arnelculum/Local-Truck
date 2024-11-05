@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TruckJobs - Find Your Next Trucking Job</title>
     <meta name="description" content="Find local and OTR truck driving jobs near you. Search CDL-A positions, company driver jobs, lease operator opportunities, and owner operator positions. Apply today!">
     <meta name="keywords" content="truck driving jobs, CDL-A jobs, local truck driver, OTR trucking jobs, company driver, lease operator, owner operator">
     <title>Local and OTR Truck Driving Jobs | Find CDL-A Driver Positions Near You</title>
@@ -12,7 +10,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
     <style>
-@@ -12,6 +15,15 @@
+        @media (max-width: 768px) {
+            .mobile-nav-open {
                 transform: translateX(0) !important;
             }
         }
@@ -28,47 +27,100 @@
     </style>
 </head>
 <body class="bg-gray-50">
-@@ -27,7 +39,7 @@
+    <!-- Mobile Header -->
+    <div class="md:hidden bg-black text-white p-4 sticky top-0 z-50 flex justify-between items-center">
+        <a href="/" class="flex items-center gap-2">
+            <i data-feather="truck" class="w-6 h-6"></i>
+            <span class="text-lg font-bold">TruckJobs</span>
+        </a>
+        <button id="menuButton" class="p-2" onclick="toggleMobileMenu()">
+            <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
     </div>
 
     <div class="flex min-h-screen">
-        <!-- Sidebar - Hidden on mobile by default -->
         <!-- Sidebar -->
         <div id="sidebar" class="w-64 bg-black text-white p-6 fixed h-full z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out">
             <div class="mb-8 hidden md:flex items-center gap-2">
                 <i data-feather="truck" class="w-8 h-8"></i>
-@@ -65,7 +77,7 @@ <h1 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8">Find Your Next Trucking
+                <span class="text-xl font-bold">TruckJobs</span>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="/" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-800">
+                    <i data-feather="home" class="w-5 h-5"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/search" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                    <i data-feather="search" class="w-5 h-5"></i>
+                    <span>Search Jobs</span>
+                </a>
+                <a href="/employer" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                    <i data-feather="briefcase" class="w-5 h-5"></i>
+                    <span>For Employers</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto pt-4 border-t border-gray-800">
+                <a href="https://buy.stripe.com/00geXX7bX7wfcPm6op" 
+                   class="block w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center">
+                    Post a Job - $150/month
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 md:ml-64">
+            <div class="p-4 md:p-8 bg-gradient-to-b from-gray-900 to-black text-white min-h-screen">
+                <div class="max-w-6xl mx-auto">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8">Find Your Next Trucking Job</h1>
 
                     <!-- Search Box -->
                     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-6 md:mb-8">
-                        <form class="flex flex-col gap-4">
                         <form class="flex flex-col md:flex-row gap-4">
                             <div class="flex-1">
                                 <label for="zipCode" class="block text-sm font-medium text-gray-700 mb-1">
                                     Enter ZIP Code
-@@ -88,11 +100,11 @@ <h1 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8">Find Your Next Trucking
+                                </label>
+                                <div class="relative">
+                                    <i data-feather="map-pin" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                    <input type="text" id="zipCode" 
+                                           class="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                           placeholder="Enter your ZIP code">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                                <i data-feather="search" class="w-5 h-5"></i>
+                                Find Jobs
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Featured Jobs -->
                     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 text-gray-900">
                         <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Featured Jobs</h2>
                         <div class="space-y-4 md:space-y-6">
-                            <!-- Featured Job 1 -->
                             <!-- Company Driver Position -->
                             <div class="border rounded-lg p-4 md:p-6">
                                 <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                    <img src="https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png" 
-                                         alt="Giltner Transportation" class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
                                     <img src="/api/placeholder/96/96" alt="Giltner Transportation" 
                                          class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
                                     <div class="flex-1 space-y-3">
                                         <div class="text-center md:text-left">
                                             <h3 class="text-lg md:text-xl font-semibold">CDL-A Company Driver</h3>
-@@ -109,10 +121,33 @@ <h3 class="text-lg md:text-xl font-semibold">CDL-A Company Driver</h3>
+                                            <p class="text-gray-600">Giltner Transportation</p>
+                                        </div>
+                                        <p class="text-gray-700">Free Maintenance, Per Mile Pay, and Safety Bonus</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="map-pin" class="w-5 h-5 text-blue-600"></i>
+                                                <span>Jerome, ID</span>
+                                            </div>
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="dollar-sign" class="w-5 h-5 text-green-600"></i>
                                                 <span>$0.57 – $0.60/mile</span>
                                             </div>
                                         </div>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Starting Rate</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Payment Schedule</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Bonuses</span>
                                         <button onclick="toggleJobDetails('company-driver')" class="text-blue-600 hover:text-blue-800 font-medium">
                                             View Details
                                         </button>
@@ -99,29 +151,33 @@
                                         </div>
                                         <a href="https://intelliapp.driverapponline.com/c/giltner" 
                                            class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
-@@ -122,11 +157,11 @@ <h3 class="text-lg md:text-xl font-semibold">CDL-A Company Driver</h3>
+                                            Apply Now
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Featured Job 2 -->
                             <!-- Lease Operator Position -->
                             <div class="border rounded-lg p-4 md:p-6">
                                 <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                    <img src="https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png" 
-                                         alt="Giltner Transportation" class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
                                     <img src="/api/placeholder/96/96" alt="Giltner Transportation" 
                                          class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
                                     <div class="flex-1 space-y-3">
                                         <div class="text-center md:text-left">
                                             <h3 class="text-lg md:text-xl font-semibold">CDL-A Lease Operator</h3>
-@@ -143,12 +178,41 @@ <h3 class="text-lg md:text-xl font-semibold">CDL-A Lease Operator</h3>
+                                            <p class="text-gray-600">Giltner Transportation</p>
+                                        </div>
+                                        <p class="text-gray-700">Be your own boss so you can own your equipment</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="map-pin" class="w-5 h-5 text-blue-600"></i>
+                                                <span>Jerome, ID</span>
+                                            </div>
+                                            <div class="flex items-center gap-2 text-gray-600">
+                                                <i data-feather="dollar-sign" class="w-5 h-5 text-green-600"></i>
                                                 <span>73% of Line Haul</span>
                                             </div>
                                         </div>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Pay Rate</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Fuel Benefits</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Equipment</span>
                                         <button onclick="toggleJobDetails('lease-operator')" class="text-blue-600 hover:text-blue-800 font-medium">
                                             View Details
                                         </button>
@@ -156,54 +212,58 @@
                                                 <p class="mt-2 text-gray-700">Owner Operators with their own Authority will enjoy the same benefits as lease operators, but can make 80% of Line Haul instead of 73%. Giltner will also provide trailers for drop and hook freight.</p>
                                             </div>
                                         </div>
-                                        <a href="https://intelliapp.driverapponline.com/c/giltner" 
                                          <a href="https://intelliapp.driverapponline.com/c/giltner" 
                                            class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
                                             Apply Now
                                         </a>
-@@ -161,7 +225,7 @@ <h3 class="text-lg md:text-xl font-semibold">CDL-A Lease Operator</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-                                <!-- SEO Optimized Article -->
-            <div class="p-6 md:p-8 bg-white text-gray-900 mt-8">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4">Find the Best Local Truck Driver Jobs Near You - OTR Positions Also Available</h2>
-                <p>If you're a professional truck driver searching for <strong>local truck driver jobs near me</strong>, you're in the right place. This page provides you with opportunities to find <strong>local CDL-A truck driver jobs</strong> and <strong>OTR (Over-the-Road) trucking positions</strong>, perfectly tailored to your needs. Whether you're looking for a daily route that gets you home every night or an adventurous long-haul trip across the country, we connect you with opportunities that match your driving goals.</p>
-                
-                <h3 class="text-xl md:text-2xl font-bold mt-6 mb-4">Local Truck Driver Jobs Near Your ZIP Code</h3>
-                <p>Local truck driving jobs are ideal for drivers who prefer to stay closer to home. We know the importance of family time and maintaining a balanced lifestyle, which is why we focus on helping you find <strong>local truck driver jobs</strong> that fit your schedule. By entering your ZIP code, you can instantly find trucking opportunities near your area, allowing you to explore nearby positions and reduce time spent commuting to the yard.</p>
-                
-                <p>Our platform features a wide range of <strong>company driver roles, lease operator opportunities, and owner-operator positions</strong>, ensuring that there's something for every type of driver. With our powerful job search tool, drivers can narrow down their search to specific regions, routes, and benefits, including <strong>no-touch freight, home daily routes, and pet-friendly policies</strong>.</p>
-
-                <h3 class="text-xl md:text-2xl font-bold mt-6 mb-4">OTR (Over-the-Road) Trucking Jobs</h3>
-                <p>In addition to local driving positions, we also have plenty of <strong>OTR trucking jobs</strong> for those who enjoy the open road. OTR drivers play an essential role in keeping goods moving from coast to coast, and many companies are actively hiring drivers with <strong>CDL-A licenses</strong> who are ready to take on longer routes and make the most of competitive pay rates. If you're looking to combine adventure with your work, OTR jobs might be just what you're looking for.</p>
-
-                <p>Companies posting jobs on this platform offer <strong>flexible home time options, mileage and safety bonuses</strong>, and a variety of truck models and routes to fit your preference. Whether you want to run on specific lanes or cover multiple regions, there's an OTR job available that will fit your lifestyle.</p>
-
-                <h3 class="text-xl md:text-2xl font-bold mt-6 mb-4">Post a Job - Connect With Local and OTR Drivers</h3>
-                <p>For trucking companies, this platform offers a convenient way to reach both <strong>local truck drivers</strong> and <strong>OTR truck drivers</strong>. Whether your company needs to hire drivers for short local routes or long-haul OTR jobs, posting on this site helps you reach a targeted audience of qualified professionals actively seeking new opportunities. Our goal is to connect companies with drivers who are located near their terminal or are willing to run cross-country routes.</p>
-
-                <p><strong>Drivers</strong>, take control of your next career move by exploring the various trucking positions available through our platform. <strong>Employers</strong>, ensure your job postings reach the right drivers by leveraging our easy-to-use job board. Let's keep America moving, one mile at a time.</p>
-            </div>
     
     <!-- Overlay for mobile menu -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
 
-@@ -186,6 +250,26 @@ <h3 class="text-lg md:text-xl font-semibold">CDL-A Lease Operator</h3>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const menuIcon = document.querySelector('#menuButton i');
+            
+            sidebar.classList.toggle('mobile-nav-open');
+            overlay.classList.toggle('hidden');
+            
+            // Toggle menu icon between menu and x
+            if (menuIcon.getAttribute('data-feather') === 'menu') {
+                menuIcon.setAttribute('data-feather', 'x');
+            } else {
+                menuIcon.setAttribute('data-feather', 'menu');
             }
             feather.replace();
         }
+
         // Job details toggle functionality
         function toggleJobDetails(id) {
             const details = document.getElementById(id);
             details.classList.toggle('expanded');
         }
+
         // Update image sources after page load
         window.onload = function() {
             const companyLogos = document.querySelectorAll('img[alt="Giltner Transportation"]');
             companyLogos.forEach(logo => {
                 logo.src = "https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png";
             });
+
             // Update all application links
             const applyLinks = document.querySelectorAll('a[href*="intelliapp.driverapponline.com"]');
             applyLinks.forEach(link => {
