@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Truck Driving Jobs | TruckJobs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        @media (max-width: 768px) {
+            .mobile-nav-open {
+                transform: translateX(0) !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Mobile Header -->
+    <div class="md:hidden bg-black text-white p-4 sticky top-0 z-50 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2">
+            <i data-feather="truck" class="w-6 h-6"></i>
+            <span class="text-lg font-bold">TruckJobs</span>
+        </a>
+        <button id="menuButton" class="p-2" onclick="toggleMobileMenu()">
+            <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-black text-white p-6 fixed h-full z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out">
+            <div class="mb-8 hidden md:flex items-center gap-2">
+                <i data-feather="truck" class="w-8 h-8"></i>
+                <span class="text-xl font-bold">TruckJobs</span>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                    <i data-feather="home" class="w-5 h-5"></i>
+                    <span>Home</span>
+                </a>
+                <a href="search.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-800">
+                    <i data-feather="search" class="w-5 h-5"></i>
+                    <span>Search Jobs</span>
+                </a>
+                <a href="employer.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                    <i data-feather="briefcase" class="w-5 h-5"></i>
+                    <span>For Employers</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto pt-4 border-t border-gray-800">
+                <a href="https://buy.stripe.com/00geXX7bX7wfcPm6op" 
+                   class="block w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center">
+                    Post a Job - $150/month
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 md:ml-64">
+            <div class="p-4 md:p-8 bg-gradient-to-b from-gray-900 to-black text-white min-h-screen">
+                <div class="max-w-6xl mx-auto">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-6">Search Truck Driving Jobs</h1>
+
+                    <!-- Search Box -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-6">
+                        <form id="searchForm" class="space-y-4" onsubmit="handleSearch(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label for="zipCode" class="block text-sm font-medium text-gray-700 mb-1">
+                                        ZIP Code
+                                    </label>
+                                    <input type="text" id="zipCode" 
+                                           class="w-full px-4 py-2 border rounded-lg"
+                                           placeholder="Enter ZIP code">
+                                </div>
+                                <div>
+                                    <label for="radius" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Search Radius
+                                    </label>
+                                    <select id="radius" class="w-full px-4 py-2 border rounded-lg">
+                                        <option value="25">25 miles</option>
+                                        <option value="50">50 miles</option>
+                                        <option value="100">100 miles</option>
+                                        <option value="250">250 miles</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="jobType" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Job Type
+                                    </label>
+                                    <select id="jobType" class="w-full px-4 py-2 border rounded-lg">
+                                        <option value="all">All Types</option>
+                                        <option value="company">Company Driver</option>
+                                        <option value="owner">Owner Operator</option>
+                                        <option value="lease">Lease Operator</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full md:w-auto bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                                Search Jobs
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Search Results -->
+                    <div id="searchResults" class="bg-white rounded-xl shadow-lg p-4 md:p-6 text-gray-900">
+                        <h2 class="text-xl font-bold mb-4">Search Results</h2>
+                        <div id="resultsContainer" class="space-y-4">
+                            <!-- Results will be populated by JavaScript -->
+                            <p class="text-gray-600">Enter a ZIP code to search for nearby jobs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile menu -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Sample job data with ZIP codes and coordinates
+        const jobsDatabase = [
+            {
+                id: 1,
+                title: "CDL-A Company Driver",
+                company: "Giltner Transportation",
+                zipCode: "83338", // Jerome, ID
+                lat: 42.7241,
+                lng: -114.5186,
+                pay: "$0.57 – $0.60/mile",
+                type: "company",
+                description: "Free Maintenance, Per Mile Pay, and Safety Bonus",
+                location: "Jerome, ID"
+            },
+            {
+                id: 2,
+                title: "CDL-A Lease Operator",
+                company: "Giltner Transportation",
+                zipCode: "83338", // Jerome, ID
+                lat: 42.7241,
+                lng: -114.5186,
+                pay: "73% of Line Haul",
+                type: "lease",
+                description: "Be your own boss with our lease program",
+                location: "Jerome, ID"
+            },
+            {
+                id: 3,
+                title: "CDL-A Company Driver",
+                company: "Western Express",
+                zipCode: "83687", // Nampa, ID
+                lat: 43.5407,
+                lng: -116.5635,
+                pay: "$0.55/mile",
+                type: "company",
+                description: "Regional Routes, Home Weekly",
+                location: "Nampa, ID"
+            }
+        ];
+
+        // ZIP code coordinate data (simplified version)
+        const zipCoordinates = {
+            "83338": { lat: 42.7241, lng: -114.5186 }, // Jerome, ID
+            "83687": { lat: 43.5407, lng: -116.5635 }, // Nampa, ID
+            // Add more ZIP codes as needed
+        };
+
+        // Calculate distance between two points using Haversine formula
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 3959; // Earth's radius in miles
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            const zipCode = document.getElementById('zipCode').value;
+            const radius = parseInt(document.getElementById('radius').value);
+            const jobType = document.getElementById('jobType').value;
+
+            const searchCoords = zipCoordinates[zipCode];
+            if (!searchCoords) {
+                showError("Invalid ZIP code. Please enter a valid ZIP code.");
+                return;
+            }
+
+            const results = jobsDatabase.filter(job => {
+                if (jobType !== 'all' && job.type !== jobType) return false;
+                
+                const distance = calculateDistance(
+                    searchCoords.lat, searchCoords.lng,
+                    job.lat, job.lng
+                );
+                return distance <= radius;
+            });
+
+            displayResults(results);
+        }
+
+        function displayResults(results) {
+            const container = document.getElementById('resultsContainer');
+            if (results.length === 0) {
+                container.innerHTML = '<p class="text-gray-600">No jobs found matching your criteria</p>';
+                return;
+            }
+
+            container.innerHTML = results.map(job => `
+                <div class="border rounded-lg p-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-semibold">${job.title}</h3>
+                            <p class="text-gray-600">${job.company}</p>
+                        </div>
+                        <span class="text-green-600 font-semibold">${job.pay}</span>
+                    </div>
+                    <div class="mt-2 space-y-2">
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <i data-feather="map-pin" class="w-4 h-4"></i>
+                            <span>${job.location}</span>
+                        </div>
+                        <p class="text-gray-700">${job.description}</p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="https://intelliapp.driverapponline.com/c/giltner" 
+                           class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-block">
+                            Apply Now
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Reinitialize Feather Icons for new content
+            feather.replace();
+        }
+
+        function showError(message) {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = `<p class="text-red-600">${message}</p>`;
+        }
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const menuIcon = document.querySelector('#menuButton i');
+            
+            sidebar.classList.toggle('mobile-nav-open');
+            overlay.classList.toggle('hidden');
+            
+            if (menuIcon.getAttribute('data-feather') === 'menu') {
+                menuIcon.setAttribute('data-feather', 'x');
+            } else {
+                menuIcon.setAttribute('data-feather', 'menu');
+            }
+            feather.replace();
+        }
+    </script>
+</body>
+</html>
