@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TruckJobs - Find Your Next Trucking Job</title>
+    <meta name="description" content="Find local and OTR truck driving jobs near you. Search CDL-A positions, company driver jobs, lease operator opportunities, and owner operator positions. Apply today!">
+    <meta name="keywords" content="truck driving jobs, CDL-A jobs, local truck driver, OTR trucking jobs, company driver, lease operator, owner operator">
+    <title>Local and OTR Truck Driving Jobs | Find CDL-A Driver Positions Near You</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
     <style>
@@ -11,6 +14,15 @@
             .mobile-nav-open {
                 transform: translateX(0) !important;
             }
+        }
+        .job-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .job-details.expanded {
+            max-height: 2000px;
+            transition: max-height 0.5s ease-in;
         }
     </style>
 </head>
@@ -27,7 +39,7 @@
     </div>
 
     <div class="flex min-h-screen">
-        <!-- Sidebar - Hidden on mobile by default -->
+        <!-- Sidebar -->
         <div id="sidebar" class="w-64 bg-black text-white p-6 fixed h-full z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out">
             <div class="mb-8 hidden md:flex items-center gap-2">
                 <i data-feather="truck" class="w-8 h-8"></i>
@@ -65,7 +77,7 @@
 
                     <!-- Search Box -->
                     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 mb-6 md:mb-8">
-                        <form class="flex flex-col gap-4">
+                        <form class="flex flex-col md:flex-row gap-4">
                             <div class="flex-1">
                                 <label for="zipCode" class="block text-sm font-medium text-gray-700 mb-1">
                                     Enter ZIP Code
@@ -88,11 +100,11 @@
                     <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 text-gray-900">
                         <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Featured Jobs</h2>
                         <div class="space-y-4 md:space-y-6">
-                            <!-- Featured Job 1 -->
+                            <!-- Company Driver Position -->
                             <div class="border rounded-lg p-4 md:p-6">
                                 <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                    <img src="https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png" 
-                                         alt="Giltner Transportation" class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
+                                    <img src="/api/placeholder/96/96" alt="Giltner Transportation" 
+                                         class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
                                     <div class="flex-1 space-y-3">
                                         <div class="text-center md:text-left">
                                             <h3 class="text-lg md:text-xl font-semibold">CDL-A Company Driver</h3>
@@ -109,10 +121,33 @@
                                                 <span>$0.57 – $0.60/mile</span>
                                             </div>
                                         </div>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Starting Rate</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Payment Schedule</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Bonuses</span>
+                                        <button onclick="toggleJobDetails('company-driver')" class="text-blue-600 hover:text-blue-800 font-medium">
+                                            View Details
+                                        </button>
+                                        <div id="company-driver" class="job-details space-y-4">
+                                            <div class="bg-gray-50 p-4 rounded-lg">
+                                                <h4 class="font-semibold mb-2">Respect & Great Home Time</h4>
+                                                <p class="text-gray-700">Every driver should be treated fairly and with respect. At Giltner Transportation, our business is built around supporting our drivers and their needs. We provide optimized lanes and consistent freight that work perfectly to get you the best home time and pay so that you can accomplish your goals. We are The Better Move.</p>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-semibold mb-2">Benefits</h4>
+                                                <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                                    <li>Starting Rate of $0.57 – $0.60/mile Based on Experience</li>
+                                                    <li>Paid Weekly</li>
+                                                    <li>Mileage, Safety, and Fuel Bonus Programs Available</li>
+                                                    <li>99% No Touch Freight – Refrigerated</li>
+                                                    <li>Major Medical, Dental, and Vision after 60 Days of Employment</li>
+                                                    <li>Optimized Idle</li>
+                                                    <li>E-Logs & Qualcomm</li>
+                                                    <li>Upgraded Latest Models – Freightliner Cascadia and Volvo 860</li>
+                                                    <li>Great Dane, Utility, and Vanguard Trailers</li>
+                                                    <li>Vacation Pay after 1 Year of Employment</li>
+                                                    <li>Direct Deposit</li>
+                                                    <li>Pet Friendly Policy</li>
+                                                    <li>Ride Along Policy</li>
+                                                    <li>Layover, Detention, and Extra Pick & Drop Pay</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                         <a href="https://intelliapp.driverapponline.com/c/giltner" 
                                            class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
@@ -122,11 +157,11 @@
                                 </div>
                             </div>
 
-                            <!-- Featured Job 2 -->
+                            <!-- Lease Operator Position -->
                             <div class="border rounded-lg p-4 md:p-6">
                                 <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                    <img src="https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png" 
-                                         alt="Giltner Transportation" class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
+                                    <img src="/api/placeholder/96/96" alt="Giltner Transportation" 
+                                         class="w-20 h-20 md:w-24 md:h-24 object-contain mx-auto md:mx-0">
                                     <div class="flex-1 space-y-3">
                                         <div class="text-center md:text-left">
                                             <h3 class="text-lg md:text-xl font-semibold">CDL-A Lease Operator</h3>
@@ -143,12 +178,41 @@
                                                 <span>73% of Line Haul</span>
                                             </div>
                                         </div>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Pay Rate</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Fuel Benefits</span>
-                                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Equipment</span>
+                                        <button onclick="toggleJobDetails('lease-operator')" class="text-blue-600 hover:text-blue-800 font-medium">
+                                            View Details
+                                        </button>
+                                        <div id="lease-operator" class="job-details space-y-4">
+                                            <div class="bg-gray-50 p-4 rounded-lg">
+                                                <h4 class="font-semibold mb-2">Take it to the Next Level</h4>
+                                                <p class="text-gray-700">Giltner believes in building strong, mutually beneficial relationships with all drivers. Our lease program is designed to reward those special drivers willing to manage their own business. Our lease operators can run their own business, be their own boss, and gain the perks that go along with it. A lease relationship with Giltner is a win for all parties.</p>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-semibold mb-2">Benefits</h4>
+                                                <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                                    <li>73% of Line Haul</li>
+                                                    <li>EFS Fuel Card Discounts</li>
+                                                    <li>Affordable Payments</li>
+                                                    <li>100% of Fuel Surcharge</li>
+                                                    <li>New Equipment</li>
+                                                    <li>Extended Warranty</li>
+                                                    <li>Flexible Home Time</li>
+                                                    <li>No Trailer Rental</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-semibold mb-2">Have Your Own Equipment?</h4>
+                                                <p class="text-gray-700 mb-2">If you already have your own equipment, you can come on as an Owner Operator! Here is how you can qualify as an Owner Operator for Giltner:</p>
+                                                <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                                    <li>Equipment must be 3 years old or newer</li>
+                                                    <li>Must be California Carbon-Compliant</li>
+                                                    <li>Tractor must weigh less than 17,500 lbs (dry weight, before fuel)</li>
+                                                    <li>Tractor must be able to haul 44,000 lbs</li>
+                                                    <li>Inspection of equipment will be required prior to signing of contract</li>
+                                                </ul>
+                                                <p class="mt-2 text-gray-700">Owner Operators with their own Authority will enjoy the same benefits as lease operators, but can make 80% of Line Haul instead of 73%. Giltner will also provide trailers for drop and hook freight.</p>
+                                            </div>
                                         </div>
-                                        <a href="https://intelliapp.driverapponline.com/c/giltner" 
+                                         <a href="https://intelliapp.driverapponline.com/c/giltner" 
                                            class="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
                                             Apply Now
                                         </a>
@@ -161,7 +225,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Overlay for mobile menu -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
 
@@ -185,6 +249,26 @@
                 menuIcon.setAttribute('data-feather', 'menu');
             }
             feather.replace();
+        }
+
+        // Job details toggle functionality
+        function toggleJobDetails(id) {
+            const details = document.getElementById(id);
+            details.classList.toggle('expanded');
+        }
+
+        // Update image sources after page load
+        window.onload = function() {
+            const companyLogos = document.querySelectorAll('img[alt="Giltner Transportation"]');
+            companyLogos.forEach(logo => {
+                logo.src = "https://primepulsemedia.com/wp-content/uploads/2024/11/Giltner1.png";
+            });
+
+            // Update all application links
+            const applyLinks = document.querySelectorAll('a[href*="intelliapp.driverapponline.com"]');
+            applyLinks.forEach(link => {
+                link.href = "https://intelliapp.driverapponline.com/c/giltner?apply-now-page&uri_b=ia_giltner_328695307";
+            });
         }
     </script>
 </body>
